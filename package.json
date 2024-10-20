@@ -1,0 +1,29 @@
+{
+  "name": "fanhub",
+  "version": "1.0.0",
+  "description": "FanHub is the final project for WDD330 BYU-Idaho",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geoenterprise/fanhub.git"
+  },
+  "keywords": [
+    "sports",
+    "players",
+    "teams",
+    "fan",
+    "highlights"
+  ],
+  "author": "Jovanny Rey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geoenterprise/fanhub/issues"
+  },
+  "homepage": "https://github.com/geoenterprise/fanhub/src/index.html",
+  "dependencies": {
+    "vite": "^5.4.9"
+  }
+}
