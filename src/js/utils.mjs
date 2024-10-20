@@ -24,7 +24,19 @@ export function getParams(params) {
     const product = urlParams.get(params);
     return product;
 }
-
+export function renderWithTemplate(template, parent, data, callback) {
+    parent.insertAdjacentHTML("afterbegin", template);
+    if (callback) {
+      callback(data);
+    }
+}
+export async function loadTemplate(path) {
+    const response = await fetch(path);
+    const html = await response.text();
+    const template = document.createElement('template');
+    template.innerHTML = html;
+    return template;
+}
 export async function loadHeaderFooter() {
     const headerContent = await loadTemplate("/partials/header.html");
     const footerContent = await loadTemplate("/partials/footer.html");
