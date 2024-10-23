@@ -46,18 +46,18 @@ export async function loadHeaderFooter() {
     renderWithTemplate(footerContent.innerHTML, footerElement);
 }
 export async function loginUser(email, password) {
-    const response = await fetch('https://your-api-endpoint.com/login', {
-        method: 'POST',
+    const response = await fetch("http://api", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({ email, password })
     });
 
     if (!response.ok) {
-        throw new Error('Login failed');
+        throw new Error("Login failed");
     }
 
     const data = await response.json();
-    return data.token;  // Assuming the API returns a JWT token
+    return data.token; 
 }
