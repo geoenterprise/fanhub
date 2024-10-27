@@ -1,3 +1,4 @@
+const BASE_URL = window.location.hostname === "localhost" ? "http://localhost:4000" : "https://fanhubapp.netlify.app/";
 // retrieve data from localstorage
 export function getLocalStorage(key) {
     return JSON.parse(localStorage.getItem(key));
@@ -46,7 +47,7 @@ export async function loadHeaderFooter() {
     renderWithTemplate(footerContent.innerHTML, footerElement);
 }
 export async function loginUser(email, password) {
-    const response = await fetch("http://api", {
+    const response = await fetch(`${BASE_URL}/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -59,5 +60,43 @@ export async function loginUser(email, password) {
     }
 
     const data = await response.json();
-    return data.token; 
+    return data.accessToken; 
 }
+
+export function getFavoriteData() {
+    return JSON.parse(localStorage.getItem("favorites")) || { teams: [], players: [] };
+}
+export function setFavoriteData(favorites) {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+export function selectFavorite(type, name) {
+    if (!selectedFavorites[type]) {
+        console.error(`Invalid type: ${type}`);
+        return;
+    }
+
+    if (!selectedFavorites[type].includes(name)) {
+        selectedFavorites[type].push(name);
+        console.log(`${name} selected as favorite ${type}`);
+    } else {
+        console.log(`${name} is already in your favorites.`);
+    }
+}
+
+export function confirmSelection(type, name) {
+    alert(`${name} has been added to your favorite ${type}s!`);
+}
+export function setFavorites() {
+    localStorage.setItem("favorites", JSON.stringify(selectedFavorites));
+}
+
+export function getFavorites() {
+    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    if (favorites) {
+        Object.keys(favorites).forEach(type => {
+            selectedFavorites[type] = favorites[type];
+        });
+    }
+}
+
+getFavorites();

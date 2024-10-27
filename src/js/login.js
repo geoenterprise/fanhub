@@ -8,13 +8,13 @@ document.querySelector("#loginForm").addEventListener("submit", async (e) => {
 
     // Call the login function (uses JWT authentication)
     try {
-        const token = await loginUser(email, password);
+        const accessToken = await loginUser(email, password);
 
         // Store JWT in localStorage for future API requests
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", accessToken);
 
         // Redirect to the dashboard page after successful login
-        window.location.href = "/dashboard.html";
+        window.location.href = "/dashboard/index.html";
     } catch (error) {
         alert("Login failed. Please check your credentials and try again.");
     }

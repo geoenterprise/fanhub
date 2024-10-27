@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <title>FanHub | Favorites Selection</title>
+        <meta
+        name="description"
+        content="Select your favorite teams and players"
+        />
+        <meta name="author" content="Jovanny Rey" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <script src="./js/main.js" type="module"></script>
+    </head>
+    <body>
+        <header class="divider" id="dynamic-header"></header>
+        <h1>Select Your Favorite Teams and Players</h1>
+        <main>
+            <section id="teams">
+                <h2>Favorite Team</h2>
+                <button onclick="selectFavorite('team', 'Team A')">Team A</button>
+            </section>
+
+            <section id="players">
+                <h2>Favorite Player</h2>
+                <button onclick="selectFavorite('player', 'Player 1')">Player 1</button>
+            </section>
+
+            <button onclick="confirmSelection()">Confirm Selection</button>
+        </main>
+        <script src="/js/favorites.js"></script>
+        <footer id="dynamic-footer"></footer>
+    </body>
+</html>
