@@ -15,14 +15,13 @@ import { fetchTeamAPI } from "./api.mjs";
 //     teamList.appendChild(teamItem);
 //   });
 // });
-export async function renderTeamData(teamId) {
-    const teamData = await fetchTeamAPI(teamId);
-    document.querySelector("#team-info").innerHTML = JSON.stringify(teamData);
-}
+
+    
+
 export async function renderTeamData(teamId) {
     const teamData = await fetchTeamAPI(teamId);
     const teamNameElement = document.getElementById("team-name");
-
+    
     if (!teamData) {
         teamNameElement.textContent = "Failed to load team data.";
         return;
@@ -32,6 +31,7 @@ export async function renderTeamData(teamId) {
     teamNameElement.textContent = teamData.name;
 
     // You can populate other sections similarly:
+    document.querySelector("#team-info").innerHTML = JSON.stringify(teamData);
     document.getElementById("team-highlights").innerHTML = teamData.highlights || "No highlights available.";
     document.getElementById("team-stats").innerHTML = `
         <p>Wins: ${teamData.stats.wins}</p>

@@ -34,7 +34,7 @@ export function renderWithTemplate(template, parent, data, callback) {
 export async function loadTemplate(path) {
     const response = await fetch(path);
     const html = await response.text();
-    const template = document.createElement('template');
+    const template = document.createElement("template");
     template.innerHTML = html;
     return template;
 }
@@ -43,8 +43,13 @@ export async function loadHeaderFooter() {
     const footerContent = await loadTemplate("/partials/footer.html");
     const headerElement = document.querySelector("#dynamic-header");
     const footerElement = document.querySelector("#dynamic-footer");
-    renderWithTemplate(headerContent.innerHTML, headerElement);
-    renderWithTemplate(footerContent.innerHTML, footerElement);
+
+    if (headerElement && headerContent) {
+        renderWithTemplate(headerContent.innerHTML, headerElement);
+    }
+    if (footerElement && footerContent) {
+        renderWithTemplate(footerContent.innerHTML, footerElement);
+    }
 }
 export async function loginUser(email, password) {
     const response = await fetch(`${BASE_URL}/login`, {
@@ -78,6 +83,7 @@ export function selectFavorite(type, name) {
     if (!selectedFavorites[type].includes(name)) {
         selectedFavorites[type].push(name);
         console.log(`${name} selected as favorite ${type}`);
+        confirmSelection(type, name)
     } else {
         console.log(`${name} is already in your favorites.`);
     }

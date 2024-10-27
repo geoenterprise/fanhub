@@ -1,0 +1,43 @@
+src:
+    css:
+        style.css
+    dashboard:
+        index.html
+    favorites:
+        index.html
+    js:
+        api.mjs
+        dashboard.js
+        favorites.js
+        login.js
+        main.js
+        players.js
+        teams.js
+        utils.mjs
+    players:
+        index.html
+    public:
+        images:
+            FanHub_logo.png
+            FanHub_logo.webp
+            FanHub_LogoComplete.png
+            FanHub_LogoComplete.webp
+        json:
+
+        partials:
+            footer.html
+            header.html
+    teams:
+        index.html
+    index.html
+.env
+.eslintrc.json
+.gitignore
+authServer.js
+package-lock.json
+package.json
+README.md
+request.rest
+server.js
+structure.txt
+vite.config.js        
