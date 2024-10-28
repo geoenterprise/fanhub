@@ -2,15 +2,15 @@ require("dotenv").config();
 
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 const cors = require("cors");
 
 const app = express();
 
 app.use(cors({
-    origin: 'https://fanhubapp.netlify.app/',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: "https://fanhubapp.netlify.app/",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -39,7 +39,7 @@ app.get("/posts", authenticateToken, (req, res) => {
 function authenticateToken(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-    if (token ==null) return res.sendStatus(401);
+    if (token == null) return res.sendStatus(401);
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if(err) return res.sendStatus(403);

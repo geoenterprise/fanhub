@@ -1,5 +1,5 @@
-import { loginUser } from "./utils.mjs";
-import { API_ENDPOINTS } from './api.mjs';
+// import { loginUser } from "./utils.mjs";
+import { API_ENDPOINTS } from "./api.mjs";
 
 document.querySelector("#loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -19,15 +19,14 @@ document.querySelector("#loginForm").addEventListener("submit", async (e) => {
         });
 
         if (!response.ok) {
-            throw new Error('Login failed');
+            throw new Error("Login failed");
         }
 
         const { accessToken } = await response.json();
         
         localStorage.setItem("token", accessToken);
 
-         // Check if the user has selected their favorite player and team
-         const favorites = JSON.parse(localStorage.getItem("favorites")) || { teams: [], players: [] };
+        const favorites = JSON.parse(localStorage.getItem("favorites")) || { teams: [], players: [] };
 
         // Redirect based on favorites selection
         if (favorites.teams.length > 0 && favorites.players.length > 0) {

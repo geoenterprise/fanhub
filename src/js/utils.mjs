@@ -88,8 +88,13 @@ export function selectFavorite(type, name) {
         console.log(`${name} is already in your favorites.`);
     }
 }
+export let selectedFavorites = { teams: [], players: [] };
 
 export function confirmSelection(type, name) {
+    setFavoriteData({
+        teams: selectedFavorites.teams,
+        players: selectedFavorites.players
+    });
     alert(`${name} has been added to your favorite ${type}s!`);
 }
 export function setFavorites() {

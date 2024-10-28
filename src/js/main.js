@@ -1,8 +1,8 @@
 import { loadHeaderFooter, selectFavorite, confirmSelection} from "./utils.mjs";
 import { fetchFavoriteTeams, fetchFavoritePlayers } from "./api.mjs"; // Adjust if needed
-import { selectedFavorites } from './favorites.js';
-import { renderPlayerData } from './players.js';
-import { renderTeamData, renderTeamFixtures } from './teams.js';
+import { selectedFavorites } from "./favorites.js";
+import { renderPlayerData } from "./players.js";
+import { renderTeamData, renderTeamFixtures } from "./teams.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     const teamId = localStorage.getItem("favoriteTeamId");

@@ -1,8 +1,7 @@
-import { selectFavorite } from './utils.mjs';
+import { selectFavorite, setFavoriteData, getFavoriteData } from './utils.mjs';
 
-// Check localStorage for existing selections
 document.addEventListener("DOMContentLoaded", () => {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    const favorites = getFavoriteData();
     if (favorites && favorites.teams.length && favorites.players.length) {
         window.location.href = "/dashboard/index.html";
     }
@@ -10,20 +9,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
 export let selectedFavorites = { teams: [], players: [] };
 
-export function selectFavorite(type, name) {
-    if (!selectedFavorites[type]) {
-        console.error(`Invalid type: ${type}`);
-        return;
-    }
+// function selectFavorite(type, name) {
+//     if (!selectedFavorites[type]) {
+//         console.error(`Invalid type: ${type}`);
+//         return;
+//     }
 
-    if (!selectedFavorites[type].includes(name)) {
-        selectedFavorites[type].push(name);
-        console.log(`${name} selected as favorite ${type}`);
-        confirmSelection(type, name); // Call confirmSelection after selecting
-    } else {
-        console.log(`${name} is already in your favorites.`);
-    }
+//     if (!selectedFavorites[type].includes(name)) {
+//         selectedFavorites[type].push(name);
+//         console.log(`${name} selected as favorite ${type}`);
+//         confirmSelection(type, name); // Call confirmSelection after selecting
+//     } else {
+//         console.log(`${name} is already in your favorites.`);
+//     }
+// }
+
+function confirmSelection(type, name) {
+  // Save favorites to localStorage
+  setFavoriteData({
+      teams: selectedFavorites.teams,
+      players: selectedFavorites.players
+  });
+  alert(`${name} has been added to your favorite ${type}s!`);
 }
+// Check localStorage for existing selections
+document.addEventListener("DOMContentLoaded", () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites"));
+    if (favorites && favorites.teams.length && favorites.players.length) {
+        window.location.href = "/dashboard/index.html";
+    }
+    const teamElements = document.querySelectorAll(".team-item");
+    teamElements.forEach(teamElement => {
+      teamElement.addEventListener("click", () => {
+        const teamName = teamElement.textContent;
+        selectFavorite("teams", teamName);
+      });
+    });
+    const playerElements = document.querySelectorAll(".player-item");
+    playerElements.forEach(playerElement => {
+      teamElement.addEventListener("click", () => {
+        const playerName = playerElement.textContent;
+        selectFavorite("teams", playerName);
+      });
+    });
+});
 
 // function confirmSelection() {
 //   localStorage.setItem("favorites", JSON.stringify(selectedFavorites));

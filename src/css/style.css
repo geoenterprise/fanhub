@@ -5,8 +5,6 @@
   --tertiary-color: #2F4F4F ;
   --light-grey: #d0d0d0;
   --dark-grey: #303030;
-
-  /* sizes */
   --font-base: 18px;
   --small-font: 0.8em;
   --large-font: 1.2em;
@@ -36,7 +34,154 @@ header {
 header a {
     color: white;
 }
+/* Favorites selection styling */
+h1, h2 {
+    color: var(--light-grey);
+    margin-top: 1em;
+}
 
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+#teams, #players {
+    background-color: var(--tertiary-color);
+    color: white;
+    padding: 1.5em;
+    margin: 1em 0;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+}
+#dashboard {
+    text-align: center;
+    color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#favorites-overview {
+    background-color: var(--tertiary-color);
+    color: white;
+    padding: 1.5em;
+    margin: 1em 0;
+    border-radius: 8px;
+    width: 100%;
+}
+
+#favorites-overview h2 {
+    color: var(--light-grey);
+    margin-top: 0.5em;
+}
+
+#favorite-team,
+#favorite-player {
+    background-color: var(--light-grey);
+    color: var(--dark-grey);
+    padding: 0.8em;
+    border-radius: 5px;
+    margin-top: 0.5em;
+    font-size: var(--large-font);
+    font-weight: bold;
+}
+#player-page {
+    color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#player-name {
+    font-size: 1.5em;
+    color: var(--tertiary-color);
+    padding: 1em;
+    background-color: var(--light-grey);
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 1em;
+}
+#player-highlights,
+#player-fixtures,
+#player-stats,
+#player-news {
+    background-color: var(--dark-grey);
+    color: white;
+    padding: 1.5em;
+    border-radius: 8px;
+    margin: 1em 0;
+    width: 100%;
+}
+
+#player-highlights h2,
+#player-fixtures h2,
+#player-stats h2,
+#player-news h2 {
+    color: var(--light-grey);
+    margin-top: 0;
+}
+
+#player-highlights div,
+#player-fixtures div,
+#player-stats div,
+#player-news div {
+    color: var(--secondary-color);
+    background-color: var(--light-grey);
+    padding: 1em;
+    border-radius: 5px;
+    margin-top: 0.5em;
+}
+#team-page {
+    color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#team-name {
+    font-size: 1.5em;
+    color: var(--tertiary-color);
+    padding: 1em;
+    background-color: var(--light-grey);
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+/* Styling for each team info section */
+#team-highlights,
+#team-stats,
+#team-fixtures,
+#team-news {
+    background-color: var(--dark-grey);
+    color: white;
+    padding: 1.5em;
+    border-radius: 8px;
+    margin: 1em 0;
+    width: 100%;
+}
+
+#team-highlights h2,
+#team-stats h2,
+#team-fixtures h2,
+#team-news h2 {
+    color: var(--light-grey);
+    margin-top: 0;
+}
+
+/* Section content styling */
+#team-highlights div,
+#team-stats div,
+#team-fixtures div,
+#team-news div {
+    color: var(--secondary-color);
+    background-color: var(--light-grey);
+    padding: 1em;
+    border-radius: 5px;
+    margin-top: 0.5em;
+}
 .logo {
     line-height: 60px;
     width: 245px;
@@ -139,9 +284,6 @@ header a {
     position: relative;
     text-align: center;
     animation: myanima 10s infinite;
-}
-h1 {
-    color: var(--light-grey);
 }
 
 label {

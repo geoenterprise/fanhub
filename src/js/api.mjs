@@ -6,6 +6,26 @@ export const API_ENDPOINTS = {
     GET_USERS: `${API_BASE_URL}/users`,
 
 };
+// Example: Fetching Player Data
+export async function fetchPlayerDetails(playerId, accessToken) {
+  const url = `https://flashlive-sports.p.rapidapi.com/v1/players/${playerId}/details`;
+  const options = {
+      method: 'GET',
+      headers: {
+          'x-rapidapi-key': 'cbfd803bcemsh184de53f82338d1p112d32jsnb582137d4378',
+          'x-rapidapi-host': 'flashlive-sports.p.rapidapi.com',
+          'Authorization': `Bearer ${accessToken}`
+      }
+  };
+
+  try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      return result;
+  } catch (error) {
+      console.error(error);
+  }
+}
 export async function fetchPlayerAPI(endpoint) {
   const url = 'https://flashlive-sports.p.rapidapi.com/v1/players/data?sport_id=1&locale=en_INT&player_id=vgOOdZbd';
   const options = {
