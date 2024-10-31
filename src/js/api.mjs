@@ -1,6 +1,3 @@
-// const API_BASE_URL = window.location.hostname === "localhost" ? "http://localhost:4000" : "https://fanhubapp.netlify.app/";
-const API_TEAM_BASE_URL = 'https://flashlive-sports.p.rapidapi.com/v1/teams/data?locale=en_INT&team_id=Wtn9Stg0&sport_id=1';
-const API_PLAYER_BASE_URL = 'https://flashlive-sports.p.rapidapi.com/v1/players/data?sport_id=1&locale=en_INT&player_id=vgOOdZbd';
 import { saveFavorite } from './utils.mjs';
  
 export async function searchTeams(teamName) {
@@ -44,38 +41,76 @@ export async function searchPlayers(query) {
     const response = await fetch(url, options);
     const data = await response.json();
     if (data && data.response) {
-      const playerResults = data.response; // Use data.response to get the actual results
+      const playerResults = data.response; 
       console.log(playerResults);
-      return playerResults; // Return results for display
+      return playerResults; 
     } else {
         console.error('Unexpected API response:', data);
-        return []; // Return an empty array if the structure is unexpected
+        return []; 
     }
   } catch (error) {
     console.error('Error fetching teams:', error);
-    return []; // Return an empty array on error
+    return [];
   }
 }
 export function displaySearchResults(containerId, results, type) {
   const container = document.getElementById(containerId);
   container.innerHTML = ""; 
+  if (!Array.isArray(results) || results.length === 0) {
+        console.warn("Expected results to be an array with items, but got:", results);
+        const message = document.createElement('p');
+        message.textContent = "No results found. Please try a different search.";
+        container.appendChild(message);
+        return; 
+    }
 
-  if (Array.isArray(results) && results.length > 0) {
     results.forEach(item => {
-      if (item.player && item.player.name && item.team && item.team.name) {
-          const button = document.createElement("button");
-          button.textContent = item.team.name;
-          button.onclick = () => saveFavorite(itemType, item.id); // Assuming you have an 'id' property somewhere
-          container.appendChild(button);
-      } else {
-          console.error("Item does not have a player name or team name:", item);
-      }
+        let name, id;
+
+        if (type === "player" && item.player && item.player.name) {
+            name = item.player.name;
+            id = item.player.id;
+        } else if (type === "team" && item.team && item.team.name) {
+            name = item.team.name;
+            id = item.team.id;
+        } else {
+            console.error('Item does not have a player name or team name:', item);
+            return;
+        }
+
+        const button = document.createElement('button');
+        button.textContent = name;
+        button.onclick = () => {
+          if (type === "player") {
+            localStorage.setItem("selectedPlayer", JSON.stringify({ id, name }));
+          } else if (type === "team") {
+              localStorage.setItem("selectedTeam", JSON.stringify({ id, name }));
+          }
+          alert(`${name} selected as ${type}`);
+        } 
+        container.appendChild(button);
     });
-} else {
-    container.innerHTML = "<p>No results found.</p>"; // Handle empty results
-    console.error("Expected results to be an array with items, but got:", results);
 }
-}
+
+//   if (Array.isArray(results) && results.length > 0) {
+//     results.forEach(item => {
+//       const name = item.player ? item.player.name : item.team?.name;
+//       if (name) {
+//       // if (item.player && item.player.name && item.team && item.team.name) {
+//           const button = document.createElement("button");
+//           // button.textContent = item.team.name;
+//           button.textContent = name;
+//           button.onclick = () => saveFavorite(itemType, item.id); // Assuming you have an 'id' property somewhere
+//           container.appendChild(button);
+//       } else {
+//           console.error("Item does not have a player name or team name:", item);
+//       }
+//     });
+// } else {
+//     container.innerHTML = "<p>No results found.</p>"; // Handle empty results
+//     console.error("Expected results to be an array with items, but got:", results);
+// }
+
 // export async function fetchFavoriteTeams() {
 //   try {
 //       const response = await fetch(`${BASE_URL}/api/favorites/teams`, {

@@ -1,4 +1,4 @@
-import { loadHeaderFooter, initializeFavorites, checkFavorites, saveFavorite } from './utils.mjs';
+import { loadHeaderFooter, initializeFavorites, checkFavorites, } from './utils.mjs';
 import { searchTeams, searchPlayers, displaySearchResults } from './api.mjs';
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Redirect to dashboard if favorites are already selected
     if (checkFavorites()) {
-        window.location.href = "/dashboard.html";
+        window.location.href = "/dashboard/index.html";
     } else {
         setupSearchListeners();
     }

@@ -51,8 +51,9 @@ export function initializeFavorites() {
 
 // Function to check if favorites are already selected
 export function checkFavorites() {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
-    return favorites.player && favorites.team;
+    const player = localStorage.getItem("selectedPlayer");
+    const team = localStorage.getItem("selectedTeam");
+    return player && team;
 }
 
 // Function to display selection options on the index page
