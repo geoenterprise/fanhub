@@ -101,14 +101,14 @@ export function displaySearchResults(containerId, results, type) {
 
   if (Array.isArray(results) && results.length > 0) {
     results.forEach(item => {
-        if (item.name) { // Ensure item has a name
-            const button = document.createElement("button");
-            button.textContent = item.name; // Assuming this property exists
-            button.onclick = () => saveFavorite(itemType, item.id);
-            container.appendChild(button);
-        } else {
-            console.error("Item does not have a name:", item);
-        }
+      if (item.player && item.player.name && item.team && item.team.name) {
+          const button = document.createElement("button");
+          button.textContent = item.team.name;
+          button.onclick = () => saveFavorite(itemType, item.id); // Assuming you have an 'id' property somewhere
+          container.appendChild(button);
+      } else {
+          console.error("Item does not have a player name or team name:", item);
+      }
     });
 } else {
     container.innerHTML = "<p>No results found.</p>"; // Handle empty results
