@@ -32,7 +32,7 @@ function setupSearchListeners() {
 function confirmSelection() {
     if (checkFavorites()) {
         alert("Favorites saved!");
-        window.location.href = "/dashboard.html";
+        window.location.href = "/dashboard/index.html";
     } else {
         alert("Please select both a team and a player.");
     }

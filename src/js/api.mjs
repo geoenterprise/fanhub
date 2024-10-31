@@ -1,46 +1,7 @@
 // const API_BASE_URL = window.location.hostname === "localhost" ? "http://localhost:4000" : "https://fanhubapp.netlify.app/";
 const API_TEAM_BASE_URL = 'https://flashlive-sports.p.rapidapi.com/v1/teams/data?locale=en_INT&team_id=Wtn9Stg0&sport_id=1';
 const API_PLAYER_BASE_URL = 'https://flashlive-sports.p.rapidapi.com/v1/players/data?sport_id=1&locale=en_INT&player_id=vgOOdZbd';
-
-// Example: Fetching Player Data
-
-// export async function fetchPlayerDetails() {
-//   const url = 'https://api-football-v1.p.rapidapi.com/v3/players/profiles';
-//   const options = {
-//     method: 'GET',
-//     headers: {
-//       'x-rapidapi-key': 'cbfd803bcemsh184de53f82338d1p112d32jsnb582137d4378',
-//       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-//     }
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-//     const result = await response.json();
-//     console.log(result);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-// export async function fetchTeamDetails() {
-
-//   const url = 'https://api-football-v1.p.rapidapi.com/v3/teams/statistics?league=39&season=2020&team=33';
-//   const options = {
-//     method: 'GET',
-//     headers: {
-//       'x-rapidapi-key': 'cbfd803bcemsh184de53f82338d1p112d32jsnb582137d4378',
-//       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com'
-//     }
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-//     const result = await response.json();
-//     console.log(result);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+import { saveFavorite } from './utils.mjs';
  
 export async function searchTeams(teamName) {
   const url = `https://api-football-v1.p.rapidapi.com/v3/teams?search=${teamName}`;
