@@ -44,16 +44,23 @@ export async function loadHeaderFooter() {
 }
 // Function to initialize favorite selection (check if already selected in localStorage)
 export function initializeFavorites() {
-    if (!localStorage.getItem("favorites")) {
-        localStorage.setItem("favorites", JSON.stringify({ player: null, team: null }));
+    if (!localStorage.getItem("selectedPlayer")) {
+        localStorage.setItem("selectedPlayer", JSON.stringify({ player: null }));
+    }
+
+    if (!localStorage.getItem("selectedTeam")) {
+        localStorage.setItem("selectedTeam", JSON.stringify({ team: null }));
     }
 }
 
 // Function to check if favorites are already selected
 export function checkFavorites() {
-    const player = localStorage.getItem("selectedPlayer");
-    const team = localStorage.getItem("selectedTeam");
-    return player && team;
+    const player = JSON.parse(localStorage.getItem("selectedPlayer"));
+    const team = JSON.parse(localStorage.getItem("selectedTeam"));
+    return player && team && player.player !== null && team.team !== null;
+    // const favorites = JSON.parse(localStorage.getItem("favorites"));
+    // return favorites && favorites.player !== null && favorites.team !== null;
+    
 }
 
 // Function to display selection options on the index page
@@ -67,6 +74,7 @@ export function displaySelectionOptions() {
             let playerOption = document.createElement("button");
             playerOption.textContent = player.name;
             playerOption.onclick = () => saveFavorite("player", player.id);
+        
             playerSection.appendChild(playerOption);
         });
     });
@@ -83,7 +91,9 @@ export function displaySelectionOptions() {
 
 // Save selected favorite to localStorage
 export function saveFavorite(type, id) {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
-    favorites[type] = id;
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    if (type === "player") {
+        localStorage.setItem("selectedPlayer", JSON.stringify({ id }));
+    } else if (type === "team") {
+        localStorage.setItem("selectedTeam", JSON.stringify({ id }));
+    }
 }

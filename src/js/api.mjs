@@ -91,84 +91,57 @@ export function displaySearchResults(containerId, results, type) {
         container.appendChild(button);
     });
 }
+export async function fetchPlayerInfo(playerId, season = 2020) {
+  const url = `https://api-football-v1.p.rapidapi.com/v3/players?id=${playerId}&season=${season}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': 'cbfd803bcemsh184de53f82338d1p112d32jsnb582137d4378',
+      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
+    },
+  };
+  try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+      return data;
+  } catch (error) {
+      console.error("Error fetching player info:", error);
+  }
+}
 
-//   if (Array.isArray(results) && results.length > 0) {
-//     results.forEach(item => {
-//       const name = item.player ? item.player.name : item.team?.name;
-//       if (name) {
-//       // if (item.player && item.player.name && item.team && item.team.name) {
-//           const button = document.createElement("button");
-//           // button.textContent = item.team.name;
-//           button.textContent = name;
-//           button.onclick = () => saveFavorite(itemType, item.id); // Assuming you have an 'id' property somewhere
-//           container.appendChild(button);
-//       } else {
-//           console.error("Item does not have a player name or team name:", item);
-//       }
-//     });
-// } else {
-//     container.innerHTML = "<p>No results found.</p>"; // Handle empty results
-//     console.error("Expected results to be an array with items, but got:", results);
-// }
+export async function fetchTeamInfo(teamId, season = 2020) {
+  const url = `https://api-football-v1.p.rapidapi.com/v3/teams?id=${teamId}&season=${season}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': 'cbfd803bcemsh184de53f82338d1p112d32jsnb582137d4378',
+      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
+    },
+  };  
+  try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+      return data;
+  } catch (error) {
+      console.error("Error fetching team info:", error);
+  }
+}
+export async function fetchTeamStats(teamId) {
+  const url = `https://api-football-v1.p.rapidapi.com/v3/teams?id=${teamId}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': 'cbfd803bcemsh184de53f82338d1p112d32jsnb582137d4378',
+      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
+    },
+  };
 
-// export async function fetchFavoriteTeams() {
-//   try {
-//       const response = await fetch(`${BASE_URL}/api/favorites/teams`, {
-//           method: "GET",
-//           headers: {
-//               "Content-Type": "application/json"
-//           }
-//       });
-
-//       if (!response.ok) {
-//           throw new Error("Failed to fetch favorite teams");
-//       }
-
-//       const data = await response.json();
-//       return data.teams; // Adjust this according to your API response structure
-//   } catch (error) {
-//       console.error("Error fetching favorite teams:", error);
-//       return []; // Return an empty array on error
-//   }
-// }
-
-// // Function to fetch favorite players
-// export async function fetchFavoritePlayers() {
-//   try {
-//       const response = await fetch(`${BASE_URL}/api/favorites/players`, {
-//           method: "GET",
-//           headers: {
-//               "Content-Type": "application/json"
-//           }
-//       });
-
-//       if (!response.ok) {
-//           throw new Error("Failed to fetch favorite players");
-//       }
-
-//       const data = await response.json();
-//       return data.players; // Adjust this according to your API response structure
-//   } catch (error) {
-//       console.error("Error fetching favorite players:", error);
-//       return []; // Return an empty array on error
-//   }
-// }
-// export async function fetchPlayerOptions() {
-//   const url = 'https://flashlive-sports.p.rapidapi.com/v1/players/data?sport_id=1&locale=en_INT'; // Update URL as needed
-//   const options = {
-//       method: 'GET',
-//       headers: {
-//           'x-rapidapi-key': 'your_api_key', // Replace with your actual API key
-//           'x-rapidapi-host': 'flashlive-sports.p.rapidapi.com'
-//       }
-//   };
-
-//   try {
-//       const response = await fetch(url, options);
-//       const data = await response.json();
-//       return data.players; // Assuming the API returns a list of players
-//   } catch (error) {
-//       console.error("Error fetching player options:", error);
-//       return []; // Return an empty array on error
-//   }
-// }
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching team stats:", error);
+    return null; 
+  }
+}
