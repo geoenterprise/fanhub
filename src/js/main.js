@@ -17,7 +17,7 @@ async function loadPlayerData() {
     if (player && player.id) {
         const stats = await fetchPlayerStats(player.id);
         if (stats) {
-            updateStatsDisplay(stats);
+            displayPlayerInfo(stats);
         } else {
             document.getElementById("player-stats").innerHTML = "No stats available.";
         }
@@ -27,9 +27,9 @@ async function loadPlayerData() {
 async function loadTeamData() {
     const team = JSON.parse(localStorage.getItem("selectedTeam"));
     if (team && team.id) {
-        const stats = await fetchPlayerStats(team.id);
+        const stats = await fetchTeamStats(team.id);
         if (stats) {
-            updateStatsDisplay(stats);
+            displayTeamInfo(stats);
         } else {
             document.getElementById("team-stats").innerHTML = "No stats available.";
         }

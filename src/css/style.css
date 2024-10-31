@@ -292,15 +292,48 @@ label {
     color: #ffffff;
 }
 
-input[type="email"],
-input[type="password"] {
+input {
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: none;
     border-radius: 5px;
 }
+#teams, #players, #favorites-overview {
+    background-color: var(--tertiary-color);
+    color: white;
+    padding: 1.5em;
+    margin: 1em 0;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+}
 
+#dashboard {
+    text-align: center;
+    color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#favorite-team, #favorite-player, #player-name, #team-name {
+    background-color: var(--light-grey);
+    color: var(--dark-grey);
+    padding: 0.8em;
+    border-radius: 5px;
+    margin-top: 0.5em;
+    font-size: var(--large-font);
+    font-weight: bold;
+}
+
+#player-page, #team-page {
+    color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 button {
     width: 100%;
     padding: 10px;
